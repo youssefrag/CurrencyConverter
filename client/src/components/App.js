@@ -1,15 +1,22 @@
+import axios from 'axios'
+
 import { Button } from "@mui/material";
 
 function App() {
 
   const handleSubmit = () => {
-    
+    axios.post('http://localhost:4321/rates', {
+      withCredentials: true,
+    })
   }
 
   return (
     <div className="App">
       <h1>Currency Converter</h1>
-      <Button>
+      <Button
+        variant='contained'
+        onClick={handleSubmit}
+      >
         Get rates
       </Button>
     </div>

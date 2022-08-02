@@ -16,6 +16,10 @@ App.use(Cors({
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 
+App.post('/rates', (res) => {
+  console.log('route was hit')
+})
+
 App.listen(PORT, () => {
   console.log(`Express is listening on port ${PORT}`);
 });
