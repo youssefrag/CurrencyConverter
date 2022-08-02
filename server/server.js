@@ -16,22 +16,14 @@ App.use(Cors({
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 
-App.post('/rates', (res) => {
+App.post('/rates', async (res) => {
   console.log('route was hit')
 
-  const options = {
-    method: 'GET',
-    url: `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/CAD`,
-    headers: {
-      'content-type': 'application/json',
-    },
-  }
+  const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/CAD`)
+  
+  console.log(response)
 
-  axios.request(options).then((response) => {
-    console.log(response.data)
-  }).catch((error) => {
-    console.error(error)
-  })
+  res.json(response)
 })
 
 App.listen(PORT, () => {

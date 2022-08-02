@@ -8,6 +8,9 @@ function App() {
     axios.post('http://localhost:4321/rates', {
       withCredentials: true,
     })
+    .then((result) => {
+      console.log(result)
+    })
   }
 
   return (
