@@ -3,7 +3,7 @@ const Cors = require('cors');
 const App = Express();
 const PORT = 4321;
 const BodyParser = require('body-parser')
-// const axios = require('axios').default
+const axios = require('axios').default
 
 require('dotenv').config()
 
@@ -18,6 +18,20 @@ App.use(BodyParser.json());
 
 App.post('/rates', (res) => {
   console.log('route was hit')
+
+  const options = {
+    method: 'GET',
+    url: `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/CAD`,
+    headers: {
+      'content-type': 'application/json',
+    },
+  }
+
+  axios.request(options).then((response) => {
+    console.log(response.data)
+  }).catch((error) => {
+    console.error(error)
+  })
 })
 
 App.listen(PORT, () => {
