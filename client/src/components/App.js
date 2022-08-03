@@ -1,8 +1,13 @@
+import { useState, useEffect } from 'react';
+
 import axios from 'axios'
 
 import { Button } from "@mui/material";
 
 function App() {
+
+  const [rates, setRates] = useState({})
+  const [codes, setCodes] = useState([])
 
   const getRates = () => {
     axios.post('http://localhost:4321/rates', {
@@ -10,6 +15,7 @@ function App() {
     })
     .then((result) => {
       console.log(result.data)
+      setRates(result.data)
     })
   }
 
@@ -19,12 +25,14 @@ function App() {
     })
     .then((result) => {
       console.log(result.data)
+      setCodes(result.data)
     })
   }
 
-  // getRates()
-
-  getCodes()
+  useEffect(() => {
+    getCodes()
+    getRates()
+  }, [])
 
   return (
     <div className="App">

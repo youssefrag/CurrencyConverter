@@ -29,7 +29,7 @@ App.post('/codes', async (req, res) => {
 
   
 
-  res.status(200).json(codes.data)
+  res.status(200).json(codes.data.supported_codes)
 })
 
 App.listen(PORT, () => {
