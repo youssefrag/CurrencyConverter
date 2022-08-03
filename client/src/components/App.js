@@ -2,12 +2,34 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios'
 
-import { Button } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  root: {
+    paddingTop: '127px',
+    paddingBottom: '127px',
+    paddingLeft: '200px',
+    paddingRight: '200px',
+    backgroundColor: '#D3D3D3',
+  },
+  mainApp: {
+    width: '100%',
+    border: '2px solid',
+    height: '450px',
+    borderRadius: '20px',
+    backgroundColor: 'white',
+  }
+});
 
 function App() {
 
+  const classes = useStyles();
+
   const [rates, setRates] = useState({})
   const [codes, setCodes] = useState([])
+  const [fromCureency, setFromCurrency] = useState('CAD')
+  const [toCurrency, setToCurrency] = useState('USD')
 
   const getRates = () => {
     axios.post('http://localhost:4321/rates', {
@@ -49,14 +71,12 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <h1>Currency Converter</h1>
-      <Button
-        variant='contained'
-        // onClick={handleSubmit}
+    <div className={classes.root}>
+      <Box
+        className={classes.mainApp}
       >
-        Get rates
-      </Button>
+
+      </Box>
     </div>
   );
 }
