@@ -2,22 +2,22 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios'
 
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box, Typography, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
-    paddingTop: '127px',
-    paddingBottom: '127px',
-    paddingLeft: '200px',
-    paddingRight: '200px',
+    paddingTop: '110px',
+    paddingBottom: '110px',
+    paddingLeft: '150px',
+    paddingRight: '150px',
     backgroundColor: '#D3D3D3',
   },
   mainApp: {
     width: '100%',
     border: '2px solid',
-    height: '450px',
-    borderRadius: '20px',
+    height: '500px',
+    borderRadius: '50px',
     backgroundColor: 'white',
   }
 });
@@ -28,8 +28,9 @@ function App() {
 
   const [rates, setRates] = useState({})
   const [codes, setCodes] = useState([])
-  const [fromCureency, setFromCurrency] = useState('CAD')
+  const [fromCurrency, setFromCurrency] = useState('CAD')
   const [toCurrency, setToCurrency] = useState('USD')
+  const [fromAmount, setFromAmount] = useState(1)
 
   const getRates = () => {
     axios.post('http://localhost:4321/rates', {
