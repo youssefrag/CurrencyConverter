@@ -9,7 +9,7 @@ function App() {
       withCredentials: true,
     })
     .then((result) => {
-      console.log(result)
+      console.log(result.data)
     })
   }
 

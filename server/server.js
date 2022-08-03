@@ -17,13 +17,10 @@ App.use(BodyParser.urlencoded({ extended: false }));
 App.use(BodyParser.json());
 
 App.post('/rates', async (req, res) => {
-  console.log('route was hit')
 
-  const response = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/CAD`)
-  
-  // console.log(response)
+  const rates = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/CAD`)
 
-  res.json(JSON.stringify(response))
+  res.status(200).json(rates.data.conversion_rates)
 })
 
 App.listen(PORT, () => {
