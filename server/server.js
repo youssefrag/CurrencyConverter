@@ -23,6 +23,15 @@ App.post('/rates', async (req, res) => {
   res.status(200).json(rates.data.conversion_rates)
 })
 
+App.post('/codes', async (req, res) => {
+
+  const codes = await axios.get(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/codes`)
+
+  
+
+  res.status(200).json(codes.data)
+})
+
 App.listen(PORT, () => {
   console.log(`Express is listening on port ${PORT}`);
 });
