@@ -14,7 +14,6 @@ function App() {
       withCredentials: true,
     })
     .then((result) => {
-      console.log(result.data)
       setRates(result.data)
     })
   }
@@ -24,11 +23,26 @@ function App() {
       withCredentials: true,
     })
     .then((result) => {
-      console.log(result.data)
       setCodes(result.data)
     })
   }
+  
+  const findCurrencyName = (code) => {
+    for (let i = 0; i < codes.length; i++) {
+      if (codes[i][0] === code) {
+        return codes[i][1]
+      }
+    }
+  }
 
+  const findCurrencyCode = (name) => {
+    for (let i = 0; i < codes.length; i++) {
+      if (codes[i][1] === name) {
+        return codes[i][0]
+      }
+    }
+  }
+  
   useEffect(() => {
     getCodes()
     getRates()
